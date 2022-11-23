@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  blipi-dev:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-11-23T18:52:03.422270268Z"
+    description: A Helm chart for Kubernetes
+    digest: a4e6917d2f30c7b187073a12d300863969a93a6b4368a1abc913851c3c62208c
+    name: blipi-dev
+    type: application
+    urls:
+    - https://github.com/sleakops/blipi.app-helm-charts/releases/download/blipi-dev-0.0.1/blipi-dev-0.0.1.tgz
+    version: 0.0.1
+generated: "2022-11-23T18:52:03.422275368Z"
