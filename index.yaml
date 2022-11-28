@@ -14,6 +14,16 @@ entries:
   core-qa1:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-11-28T16:10:26.031187109Z"
+    description: A Helm chart for Kubernetes
+    digest: 83ff7fd560daed387908f9373ea3306f46f02b519bf439a38ffd499c2103d288
+    name: core-qa1
+    type: application
+    urls:
+    - https://github.com/sleakops/blipi.app-helm-charts/releases/download/core-qa1-0.0.7/core-qa1-0.0.7.tgz
+    version: 0.0.7
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-11-24T21:02:11.051716601Z"
     description: A Helm chart for Kubernetes
     digest: 49976d019fe748559399a63929598f6f2c3da47723205a463f17a4b132e8736b
@@ -72,4 +82,4 @@ entries:
     urls:
     - https://github.com/sleakops/blipi.app-helm-charts/releases/download/core-qa1-0.0.1/core-qa1-0.0.1.tgz
     version: 0.0.1
-generated: "2022-11-24T21:02:11.051747501Z"
+generated: "2022-11-28T16:10:26.031345408Z"
