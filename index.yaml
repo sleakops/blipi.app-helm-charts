@@ -115,6 +115,16 @@ entries:
   front-qa1:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-11-29T22:38:36.40197978Z"
+    description: A Helm chart for Kubernetes
+    digest: 4786b8c04b632ab20a27afe513b800a7b81befabbc497552e64a5f6e7b6c3f34
+    name: front-qa1
+    type: application
+    urls:
+    - https://github.com/sleakops/blipi.app-helm-charts/releases/download/front-qa1-0.0.3/front-qa1-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-11-29T22:15:43.239063577Z"
     description: A Helm chart for Kubernetes
     digest: 2ac2a6efc3e6254e0a84fce28665efdf263649de6ad5ec9440ba1580157b7543
@@ -133,4 +143,4 @@ entries:
     urls:
     - https://github.com/sleakops/blipi.app-helm-charts/releases/download/front-qa1-0.0.1/front-qa1-0.0.1.tgz
     version: 0.0.1
-generated: "2022-11-29T22:17:39.118226139Z"
+generated: "2022-11-29T22:38:36.402018481Z"
