@@ -102,4 +102,15 @@ entries:
     urls:
     - https://github.com/sleakops/blipi.app-helm-charts/releases/download/core-qa1-0.0.1/core-qa1-0.0.1.tgz
     version: 0.0.1
-generated: "2022-11-29T17:24:28.130702942Z"
+  front-qa1:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-11-29T17:59:36.269138762Z"
+    description: A Helm chart for Kubernetes
+    digest: 330715aa81e33cf733d9936544d2299cdf4676d5103ddcf2074b5900bc066c6d
+    name: front-qa1
+    type: application
+    urls:
+    - https://github.com/sleakops/blipi.app-helm-charts/releases/download/front-qa1-0.0.1/front-qa1-0.0.1.tgz
+    version: 0.0.1
+generated: "2022-11-29T17:59:36.269167462Z"
