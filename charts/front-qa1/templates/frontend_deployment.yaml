@@ -1,0 +1,78 @@
+{{- if .Values.frontend.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "front.fullname" . }}-frontend
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/name: {{ template "front.fullname" . }}-frontend
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    app.kubernetes.io/component: frontend
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ template "front.fullname" . }}-frontend
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+      app.kubernetes.io/component: frontend
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+        app.kubernetes.io/name: {{ template "front.fullname" . }}-frontend
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app.kubernetes.io/version: {{ .Chart.AppVersion }}
+        app.kubernetes.io/component: frontend
+    spec:
+      {{ template "frontend.affinity" . }}
+      {{ template "frontend.tolerations" . }}
+      {{ template "frontend.nodeselector" . }}
+      {{ template "frontend.hostAliases" . }}
+      terminationGracePeriodSeconds: {{ .Values.frontend.terminationGracePeriodSeconds | default 300 }}
+      containers:
+        - name: front
+          image: {{ .Values.global.image.repository }}:{{ .Values.global.image.tag }}
+          imagePullPolicy: {{ .Values.global.image.pullPolicy }}
+          {{- if .Values.frontend.command }}
+          command: {{- toYaml .Values.frontend.command | nindent 10 }}
+          args: {{ .Values.frontend.args }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.frontend.service.targetPort | default 80 }}
+              protocol: TCP
+          {{- if .Values.frontend.readinessProbe.enabled }}
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.frontend.service.port }}
+            initialDelaySeconds: {{ .Values.frontend.readinessProbe.initialDelaySeconds}}
+            timeoutSeconds: {{ .Values.frontend.readinessProbe.timeoutSeconds}}
+            periodSeconds: 5
+            successThreshold: 1
+          {{- end }}
+          {{ template "frontend.resources" . }}
+          {{- if .Values.frontend.envFrom }}
+          envFrom:
+          {{- toYaml .Values.frontend.envFrom | nindent 10 }}
+          {{- end }}
+          env:
+          {{ if .Values.global.datadog.enabled }}
+          - name: DATADOG_TRACE_AGENT_HOSTNAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: DD_AGENT_HOST
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          {{ end }}
+          {{- include "frontend.extraEnvironmentVars" .Values.frontend | nindent 10 }}
+          {{- include "frontend.extraSecretEnvironmentVars" .Values.frontend | nindent 10 }}
+         {{ template "frontend.mounts" . }}
+         {{ template "frontend.volumes" . }}
+{{- end }}
